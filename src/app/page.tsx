@@ -12,10 +12,7 @@ export default function Home() {
         </h2>
       </div>
       <div>
-        <h3>Your To-Do Lists</h3>
-        <p>To-Do 1</p>
-        <p>To-Do 2</p>
-        <p>To-Do 3</p>
+        <Link href={`/todo-page`}>See your todo lists</Link>
       </div>
     </main>
   );
