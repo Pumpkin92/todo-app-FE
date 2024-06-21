@@ -29,12 +29,6 @@ export const deleteTodo = (id: number) => {
 
 export const deleteTodoItem = (id: number) => {
   return client.delete(`/item/${id}`).then((response) => {
-    // if (response.status !== 204) {
-    //   return Promise.reject({
-    //     status: response.status,
-    //     msg: response.statusText,
-    //   });
-    // }
     return response;
   });
 };

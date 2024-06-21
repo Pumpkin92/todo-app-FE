@@ -6,7 +6,7 @@ import { deleteTodo, deleteTodoItem, getTodos } from "../apiUtils";
 
 export default function todoPage() {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [fetched, setFetched] = useState(false);
 
   useEffect(() => {
@@ -51,27 +51,48 @@ export default function todoPage() {
   return isLoading ? (
     <h1>loading...</h1>
   ) : (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Here are your todos</h1>
-      {todos.map((todo: Todo) => (
-        <div>
-          <section key={todo.id}>
-            <p>List Title: {todo.title}</p>
-            <p>Description: {todo.description}</p>
-            <button onClick={() => handleTodoDelete(todo.id)}>delete</button>
-          </section>
-          <ul>
-            {todo.items.map((item: Item) => (
-              <section key={item.todoId}>
-                <li>Item: {item.title}</li>
-                <button onClick={() => handleItemDelete(item.todoId)}>
-                  delete
+    <main className="flex min-h-screen flex-col items-center md:justify-between p-10">
+      <h1 className="text-3xl font-bold ">Here are your todos!</h1>
+      <div className="h-56 md:grid grid-cols-3 gap-4 content-start pb-10">
+        {todos.map((todo: Todo) => (
+          <div className="p-6 max-w-lg mx-auto rounded-xl shadow-lg  space-x-4">
+            <section className="pb-10" key={todo.id}>
+              <div>
+                <p className="text-lg font-bold flex justify-center ">
+                  List Title: {todo.title}
+                </p>
+                <p className="text-md font-bold flex justify-center ">
+                  Description: {todo.description}
+                </p>
+                <button
+                  className="text-xs p-2 max-w-sm mx-auto rounded-xl shadow-lg space-x-4 flex justify-center "
+                  onClick={() => handleTodoDelete(todo.id)}
+                >
+                  Delete
                 </button>
-              </section>
-            ))}
-          </ul>
-        </div>
-      ))}
+              </div>
+            </section>
+            <div>
+              <ul>
+                {todo.items.map((item: Item) => (
+                  <section
+                    className="justify-self-start pb-4"
+                    key={item.todoId}
+                  >
+                    <li className="pb-2">Item: {item.title}</li>
+                    <button
+                      className="text-xs p-2 max-w-sm mx-auto rounded-xl shadow-lg  space-x-4"
+                      onClick={() => handleItemDelete(item.todoId)}
+                    >
+                      Delete
+                    </button>
+                  </section>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
       <Link href={"/"}>Home</Link>
     </main>
   );
