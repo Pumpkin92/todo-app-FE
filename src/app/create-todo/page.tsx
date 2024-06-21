@@ -53,40 +53,72 @@ export default function createTodo() {
   }
 
   return created ? (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Lets add some items</h1>
+    <main className="flex min-h-screen flex-col items-center space-y-10 p-24">
+      <h1 className="text-3xl font-bold ">Lets add some items...</h1>
       <form>
-        <label htmlFor="title">Todo Item</label>
+        <div className="flex justify-center">
+          <label htmlFor="title">Todo Item:</label>
+        </div>
         <input
+          className="text-black"
           type="text"
           id="title"
           value={todo}
           onChange={handleItemChange}
         />
       </form>
-      <button onClick={() => handleNewItem(title, todoListId)}>Add</button>
-      <Link href={"/"}>Finished?</Link>
+      <button
+        onClick={() => handleNewItem(todo, todoListId)}
+        className="font-medium p-6 max-w-sm mx-auto rounded-xl shadow-lg flex items-center space-x-4"
+      >
+        Add
+      </button>
+      <Link
+        href={"/"}
+        className="font-medium p-6 max-w-sm mx-auto rounded-xl shadow-lg flex items-center space-x-4"
+      >
+        Finished?
+      </Link>
     </main>
   ) : (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Create a todo list!</h1>
+    <main className="flex min-h-screen flex-col items-center space-y-10 p-24">
+      <h1 className="text-3xl font-bold">Create a todo list!</h1>
       <form>
-        <label htmlFor="title">title</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={handleTitleChange}
-        />
-        <label htmlFor="description">description</label>
-        <input
-          type="text"
-          id="description"
-          value={description}
-          onChange={handleDescriptionChange}
-        />
+        <div className="p-6 max-w-sm mx-auto rounded-xl shadow-lg space-y-2 mb-8">
+          <div className="flex justify-center">
+            <label htmlFor="title">Title of your List:</label>
+          </div>
+          <div className="justify-center">
+            <input
+              className="text-black"
+              type="text"
+              id="title"
+              value={title}
+              onChange={handleTitleChange}
+            />
+          </div>
+        </div>
+        <div className="p-6 max-w-sm mx-auto rounded-xl shadow-lg space-y-2">
+          <div className="flex justify-center">
+            <label htmlFor="description">Description:</label>
+          </div>
+          <div className="flex justify-center">
+            <input
+              className="text-black"
+              type="text"
+              id="description"
+              value={description}
+              onChange={handleDescriptionChange}
+            />
+          </div>
+        </div>
       </form>
-      <button onClick={() => handleNewTodo(title, description)}>Submit</button>
+      <button
+        className="font-medium p-6 max-w-sm mx-auto rounded-xl shadow-lg flex items-center space-x-4"
+        onClick={() => handleNewTodo(title, description)}
+      >
+        Submit
+      </button>
     </main>
   );
 }
